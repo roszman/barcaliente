@@ -16,5 +16,10 @@ namespace Barcaliente.WebUI.Controllers
             return View();
         }
 
+        public ViewResult Menu()
+        {
+            return View();
+        }
+
     }
 }
