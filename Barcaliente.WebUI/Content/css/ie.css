@@ -1,0 +1,3 @@
+*+html{overflow:auto;}
+.box .grid_4>div a:after{top:-2px;}
+.box-2{behavior:url(js/PIE.htc); position:relative;}

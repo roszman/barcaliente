@@ -1,0 +1,116 @@
+/*=======================superfish=========================*/
+nav{
+	position:relative;
+	background: url(../images/bg-nav.jpg) 0 0 repeat-x;
+	height:59px;
+	margin:18px 0 0 0;
+	padding: 0 0 0 22px;
+	}
+.sf-menu{display:block;}
+
+.sf-menu ul {position:absolute; top:-999px; display:none; z-index:999;}
+.sf-menu a {display:block;}
+.sf-menu li:hover ul,.sf-menu li.sfHover ul {z-index:999;}
+
+ul.sf-menu li:hover li ul,ul.sf-menu li.sfHover li ul {top:-999px; display:none;z-index:999}
+ul.sf-menu li li:hover ul,ul.sf-menu li li.sfHover ul {left:100%; top:0;z-index:999}
+ul.sf-menu>li{
+	  font-family: Georgia, "Times New Roman", Times, serif ; 
+	  font-size: 16px; 
+	  float:left; 
+	  position:relative;
+	  font-weight:bold;
+	  text-transform:uppercase;
+	  margin:-6px 0 0 11px;
+	  }
+	  ul.sf-menu>li:first-child{margin-left:0;}
+	  ul.sf-menu>li>strong{
+		  display:none;
+		  position:absolute;
+		  background: url(../images/bg-li-after.png) 0 0 no-repeat;
+		  width:5px;
+		  height:72px;
+		  top:0;
+		  right:-5px;
+		  }
+ul.sf-menu>li>a{
+	display:block;
+	position:relative;
+	padding:24px 10px 28px 10px;  
+	color:#fff ;
+	}
+ul.sf-menu>li.current , ul.sf-menu>li.sfHover , ul.sf-menu>li:hover {background: url(../images/bg-li.jpg) 0 0 repeat-x #c83331;}
+ul.sf-menu>li.current>strong , ul.sf-menu>li.sfHover>strong , ul.sf-menu>li:hover>strong{display:block;} 
+ul.sf-menu>li.current>a, ul.sf-menu>li.sfHover>a, ul.sf-menu>li>a:hover{}
+
+.sf-menu>li>ul{
+	left:50px;
+	top:77px;
+	width:  122px;
+	padding:14px 20px 14px 20px; 
+	z-index:99;
+	background:#443c3c ; 
+	}
+.sf-menu>li>ul>li {
+	 display:block; 
+	 font-size: 14px; 
+	 font-style:italic;
+	 text-transform:none;
+	 border-top:1px solid #534949;
+	 padding:3px 0 3px 5px;
+	 font-weight:normal;
+	}
+.sf-menu>li>ul>li:first-child{border-top: none;}
+.sf-menu>li>ul>li>a {
+	display: inline-block;
+	color:#bbaeae ;
+	}
+.sf-menu>li>ul>li:hover, ul.sf-menu>li>ul>li.sfHover{}
+.sf-menu>li>ul>li>a:hover, ul.sf-menu>li>ul>li.sfHover a {color:#d63332;}
+
+.sf-menu li.sub-menu:after {
+    background: url("../images/indicator.png") no-repeat scroll 0 0 transparent;
+    content: "";
+    display: block;
+    height: 4px;
+    margin-top: -1px;
+    position: absolute;
+    right: 50%;
+    top: 69%;
+    width: 5px;
+}
+
+
+
+
+/* Design for a width of 768px */
+@media only screen and (max-width: 995px) {
+
+	
+}
+
+
+
+
+@media only screen and (max-width: 767px) {
+
+
+nav select {
+    display: block !important;
+    height: 23px;
+    line-height: 23px;
+    outline: medium none;
+    padding: 0;
+    border: 1px solid #000;
+    width: 100%;
+}
+
+nav span,
+.sf-menu{display:none}
+
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {	
+nav span,
+.sf-menu{display:none}
+ 
+}

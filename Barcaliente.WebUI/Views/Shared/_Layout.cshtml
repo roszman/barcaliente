@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Home</title>
+	<meta charset="utf-8">  
+	<meta name = "format-detection" content = "telephone=no" />
+	<meta name="description" content="Your description">
+	<meta name="keywords" content="Your keywords">
+	<meta name="author" content="Your name">
+	<link rel="stylesheet" href="~/Content/camera-slider.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="~/Content/style.css">
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+	  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" /> 
+	<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+	<script src="~/Scripts/jquery.easing.1.3.js"></script>
+	<script src="~/Scripts/superfish.js"></script>
+	<script src="~/Scripts/jquery.hoverIntent.minified.js"></script>
+	<script src="~/Scripts/jquery.ui.totop.js"></script>  
+	<script src="~/Scripts/camera.js"></script>
+	<script src="~/Scripts/jquery.mobilemenu.js"></script>
+	<!--[if (gt IE 9)|!(IE)]><!-->
+	 <script type="text/javascript" src="~/Scripts/jquery.mobile.customized.min.js"></script>
+	 <!--<![endif]-->
+	<script src="~/Scripts/script.js"></script> 
+	<script>
+		$(window).load(function () {
+			$().UItoTop({ easingType: 'easeOutQuart' });
+		})
+		jQuery
+		$(window).load(function () {
+			jQuery('#camera').camera({
+				pagination: true,
+				navigation: false,
+				transPeriod: 2000,
+				fx: 'simpleFade',
+				time: 7000
+			});
+		});
+	</script>
+	<!--[if lt IE 8]>
+	   <div style=' clear: both; text-align:center; position: relative;'>
+		 <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+		   <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+		</a>
+	  </div>
+	<![endif]-->
+	<!--[if lt IE 9]>
+		<script type="text/javascript" src="~/Scripts/html5.js"></script>
+		<link rel="stylesheet" type="text/css" media="screen" href="~/Content/ie.css">
+	<![endif]-->
+</head>
+<body>
+<!--==============================header=================================-->
+<div class="main">
+	 @RenderBody()
+	<!--==============================footer=================================-->		
+	<footer>
+	  <div class="main-footer">
+		<div class="container_12">
+				<div class="grid_12">                    
+					  <ul class="menu">
+						<li class="current-1"><a href="index.html">Home</a></li>
+						<li><a href="index-1.html">About</a></li>
+						<li><a href="index-2.html">Menu &amp; Specials</a></li>
+						<li><a href="index-3.html">Our Gallery</a></li>
+						<li><a href="index-4.html">Price List</a></li>
+						<li><a href="index-5.html">Order Now</a></li>
+						<li><a href="index-6.html">Contacts</a></li>
+					  </ul>
+					  <div class="inner-block">
+									  <p>Food delivery &copy; 2013&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="index-7.html">Privacy Policy</a> <br><!--{%FOOTER_LINK} --></p>
+					</div>
+				</div>
+				<div class="clear"></div>
+		</div>
+	  </div>  
+	</footer>
+</div>	
+</body>
+</html>
