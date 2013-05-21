@@ -44,7 +44,7 @@ namespace Barcaliente.WebUI.Controllers
             }
             else
             {
-                return View("NoMealsIncategory");
+                return View("NoMealsIncategory", null, categoryName);
             }
             
         }
