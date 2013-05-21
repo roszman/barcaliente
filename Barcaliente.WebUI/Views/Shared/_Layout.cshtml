@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Barcaliente.WebUI.Helpers
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Home</title>
@@ -56,8 +57,8 @@
                                 <img src="~/Content/images/logo.png" alt=""></a></h1>
                             <nav>
                                 <ul class="sf-menu responsive-menu">
-                                    <li>@Html.ActionLink("Home", "Index", "Home")<strong></strong></li>
-                                    <li class='sub-menu'>@Html.ActionLink("Menu", "Menu", "Home")<strong></strong>
+                                    <li>@Html.MenuItem("Home", "Index", "Home")<strong></strong></li>
+                                    <li class='sub-menu'>@Html.MenuItem("Menu", "Menu", "Home")<strong></strong>
                                         <ul>
                                             <li>@Html.ActionLink("Pizza", "MenuCategory", "Home", new {categoryName = "Pizza"}, null)</li>
                                             <li>@Html.ActionLink("Fast Food", "MenuCategory", "Home", new {categoryName = "Fast Food"}, null)</li>
@@ -72,11 +73,11 @@
                                             <li>@Html.ActionLink("Napoje zimne", "MenuCategory", "Home", new {categoryName = "Napoje zimne"}, null)</li>
                                         </ul>
                                     </li>
-                                    <li>@Html.ActionLink("Dowóz nocny", "NightOrders", "Home")<strong></strong></li>
-                                    <li>@Html.ActionLink("Zamówienia specjalne", "SpecialOrders", "Home")<strong></strong></li>
-                                    <li>@Html.ActionLink("Galeria", "Gallery", "Home")<strong></strong></li>
-                                    <li>@Html.ActionLink("Kontakt", "Contact", "Home")<strong></strong></li>
-                                    <li>@Html.ActionLink("Praca", "Work", "Home")<strong></strong></li>
+                                    <li>@Html.MenuItem("Dowóz nocny", "NightOrders", "Home")<strong></strong></li>
+                                    <li>@Html.MenuItem("Zamówienia specjalne", "SpecialOrders", "Home")<strong></strong></li>
+                                    <li>@Html.MenuItem("Galeria", "Gallery", "Home")<strong></strong></li>
+                                    <li>@Html.MenuItem("Kontakt", "Contact", "Home")<strong></strong></li>
+                                    <li>@Html.MenuItem("Praca", "Work", "Home")<strong></strong></li>
                                 </ul>
                             </nav>
                             <div class="clear"></div>

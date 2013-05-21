@@ -118,6 +118,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\MenuExtensions.cs" />
     <Compile Include="Infarstructure\NinjectControllerFactory.cs" />
     <Compile Include="Models\MenuCategoryViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
