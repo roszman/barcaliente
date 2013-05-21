@@ -26,5 +26,37 @@ namespace Barcaliente.WebUI.Controllers
             return View();
         }
 
+        public ViewResult Contact()
+        {
+            return View();
+        }
+
+        public ViewResult NightOrders()
+        {
+            return View();
+        }
+
+        public ViewResult Promotions()
+        {
+            return View();
+        }
+
+        public ViewResult SpecialOrders()
+        {
+            return View();
+        }
+
+        public ViewResult Gallery()
+        {
+            return View();
+        }
+
+        public ViewResult Work()
+        {
+            return View();
+        }
+
+
+
     }
 }
