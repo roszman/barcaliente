@@ -4,10 +4,10 @@
         <article class="grid_12">
             <div id="slide">
                 <div class="slider camera_wrap camera_azure_skin" id="camera">
-                    <div data-src="Content/images/slide.jpg"></div>
-                    <div data-src="Content/images/slide-1.jpg"></div>
-                    <div data-src="Content/images/slide-2.jpg"></div>
-                    <div data-src="Content/images/slide-3.jpg"></div>
+                    <div data-src="Content/images/meals/Chiliconcarne.jpg"></div>
+                    <div data-src="Content/images/meals/fajita.jpg"></div>
+                    <div data-src="Content/images/meals/greckasałatka.jpg"></div>
+                    @*<div data-src="Content/images/dishes/slide-3.jpg"></div>*@
                 </div>
             </div>
         </article>
@@ -20,11 +20,11 @@
             <div class="block">
                 <strong></strong>
                 <div class="inner">
-                    <span>Gift</span><br>
-                    <em>Certificates</em><br>
-                    <p>Purchase a gift which can be presented at any of our locations.</p>
+                    <span>Kontakt</span><br>
+                    <em>Bar Caliente</em><br>
+                    <p>Bar Caliente to lokal gastronomiczny oferujący pizze, dania z grilla, specjały kuchni meksykańskiej oraz pasty.</p>
                     <div class="div-button">
-                        <a href="#">Order Now!</a>
+                        @Html.ActionLink("Kontakt", "Contact", "Home")
                     </div>
                 </div>
             </div>
@@ -33,12 +33,19 @@
             <div class="block-1">
                 <strong></strong>
                 <div class="inner">
-                    <span>Lunch</span><br>
-                    <em>Special</em><br>
-                    <p>Choose your favourite dish and we'll deliver it right to your door!</p>
-                    <div class="div-button">
+                    <span>Promocja</span><br>
+                    <em>Pizza!</em><br>
+                    <p>zamow dwie pizze z listy poniżej a dostaniesz trzecią pizzę Capriciosę za 1 zł</p>
+                    <ul>
+                        <li>Mamma Mia 18 PLN</li>
+                        <li>Farmerska 18 PLN</li>
+                        <li>Mexicana 18 PLN!</li>
+                        <li>Quatro Fromaggi 19 PLN</li>
+                        <li>Vegatariana 18 PLN</li>
+                    </ul>
+                    @*<div class="div-button">
                         <a href="#">Order Now!</a>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
@@ -46,11 +53,12 @@
             <div class="block-2">
                 <strong></strong>
                 <div class="inner">
-                    <span>Catering</span><br>
-                    <p>With years of catering experience, Food Delivery will not disappoint!</p>
-                    <div class="div-button">
+                    <span>Chili con carne</span><br>
+                    <em>Tylko u nas oryginalna receptura!</em><br>
+                    <p>Chili con carne jeden z elementów kuchni Tex-Mex. Oczywiście jego korzenie wywodzą się z Meksyku (trzeba pamiętać, że Teksas był kiedyś jego częścią). Głowne składniki to różnego rodzaju papryki rzadko spotykane w Polsce oraz wołowina.</p>
+@*                    <div class="div-button">
                         <a href="#">read more</a>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
@@ -63,7 +71,7 @@
     <div class="container_12">
         <div class="grid_12">
             <div class="inner-block">
-                <h2 class="bg-h2">Featured <span>products</span></h2>
+                <h2 class="bg-h2">Polecane <span>dania</span></h2>
             </div>
         </div>
         <div class="grid_3">
@@ -72,13 +80,13 @@
                     <img src="~/Content/images/page-img.jpg" alt="">
                 </figure>
                 <div class="block-3">
-                    <span class="font-14">Excepteur sint occaecat cupidatat non proident</span>
+                    <span class="font-14">Idealna na lato sałatka don'kogutto</span>
                 </div>
-                <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
+                @*<p>Idealna na lato sałatka don'kogutto</p>*@
                 <span class="cost fleft">
                     <em>$</em>25<strong>.89</strong>
                 </span>
-                <a href="#" class="button fright top">Order Now!</a>
+                @*<a href="#" class="button fright top">Order Now!</a>*@
                 <div class="clear"></div>
             </div>
         </div>
@@ -88,13 +96,13 @@
                     <img src="~/Content/images/page-img-1.jpg" alt="">
                 </figure>
                 <div class="block-3">
-                    <span class="font-14">Sint occaecat cupidatat non proident</span>
+                    <span class="font-14">Karkówka mucho macho pikantna</span>
                 </div>
-                <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
+                @*<p>karkówka mucho macho pikantna</p>*@
                 <span class="cost fleft">
                     <em>$</em>25<strong>.89</strong>
                 </span>
-                <a href="#" class="button fright top">Order Now!</a>
+                @*<a href="#" class="button fright top">Order Now!</a>*@
                 <div class="clear"></div>
             </div>
         </div>
@@ -104,13 +112,13 @@
                     <img src="~/Content/images/page-img-2.jpg" alt="">
                 </figure>
                 <div class="block-3">
-                    <span class="font-14">Occaecat cupidatat non proident</span>
+                    <span class="font-14">Perfekcyjna grzanka czosnkowa</span>
                 </div>
-                <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
+                @*<p>Perfekcyjna grzanka czosnkowa</p>*@
                 <span class="cost fleft">
                     <em>$</em>25<strong>.89</strong>
                 </span>
-                <a href="#" class="button fright top">Order Now!</a>
+                @*<a href="#" class="button fright top">Order Now!</a>*@
                 <div class="clear"></div>
             </div>
         </div>
@@ -121,13 +129,13 @@
                     <img src="~/Content/images/page-img-3.jpg" alt="">
                 </figure>
                 <div class="block-3">
-                    <span class="font-14">Lorem set sint occaecat cupidatat non proident</span>
+                    <span class="font-14">Danie dnia.</span>
                 </div>
-                <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
+                @*<p>Danie dnia.</p>*@
                 <span class="cost fleft">
                     <em>$</em>25<strong>.89</strong>
                 </span>
-                <a href="#" class="button fright top">Order Now!</a>
+                @*<a href="#" class="button fright top">Order Now!</a>*@
                 <div class="clear"></div>
             </div>
         </div>

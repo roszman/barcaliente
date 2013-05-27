@@ -33,7 +33,7 @@ namespace Barcaliente.WebUI.Controllers
             List<Meal> mealsInCategory = _repository.Meals.Where(m => m.Category == categoryName).ToList();
             if (mealsInCategory.Count() > 0)
             {
-                int mealsCategoryByThree = mealsInCategory.Count() / 3;
+                int mealsCategoryByThree = SplitMealsInCategoryInThreeEqualParts(mealsInCategory.Count());
                 List<Meal>[] mealsInCategoryViewThreeColumns = new List<Meal>[3];
 
                 mealsInCategoryViewThreeColumns[0] = mealsInCategory.Take(mealsCategoryByThree).ToList();
@@ -47,6 +47,16 @@ namespace Barcaliente.WebUI.Controllers
                 return View("NoMealsIncategory", null, categoryName);
             }
             
+        }
+
+        private static int SplitMealsInCategoryInThreeEqualParts(int mealsInCategory)
+        {
+            int mealsCategoryByThree = mealsInCategory / 3;
+            if (mealsInCategory % 3 != 0)
+            {                
+                mealsCategoryByThree++;
+            }
+            return mealsCategoryByThree;
         }
 
         public ViewResult Contact()
