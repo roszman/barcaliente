@@ -6,21 +6,24 @@ using System.Web;
 using System.Web.Mvc;
 using Barcaliente.Domain.Concrete;
 using Barcaliente.WebUI.Models;
+using Barcaliente.Domain.Entities;
 
 namespace Barcaliente.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        private IMealRepository _repository;
+        private IMealRepository _mealRepository;
+        private IPromotionRepository _promotionRepository; 
 
-        public HomeController(IMealRepository mealRepository)
+        public HomeController(IMealRepository mealRepository, IPromotionRepository promotionRepository)
         {
-            _repository = mealRepository;
+            _mealRepository = mealRepository;
+            _promotionRepository = promotionRepository;
         }
 
         public ActionResult Index()
         {
-            return View(_repository.Meals.ToArray());
+            return View();
         }
 
         public ViewResult Menu()
@@ -30,7 +33,7 @@ namespace Barcaliente.WebUI.Controllers
 
         public ViewResult MenuCategory(string categoryName)
         {
-            List<Meal> mealsInCategory = _repository.Meals.Where(m => m.Category == categoryName).ToList();
+            List<Meal> mealsInCategory = _mealRepository.Meals.Where(m => m.Category == categoryName).ToList();
             if (mealsInCategory.Count() > 0)
             {
                 int mealsCategoryByThree = SplitMealsInCategoryInThreeEqualParts(mealsInCategory.Count());
@@ -71,7 +74,7 @@ namespace Barcaliente.WebUI.Controllers
 
         public ViewResult Promotions()
         {
-            return View();
+            return View(_promotionRepository.Promotions.Where(p => p.Active == true));
         }
 
         public ViewResult SpecialOrders()

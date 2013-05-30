@@ -1,5 +1,9 @@
-﻿@{
-    ViewBag.Title = "Promotions";
-}
+﻿@using Barcaliente.Domain.Entities
+@model IEnumerable<Promotion>
 
 <h2>Promotions</h2>
+@foreach (var promotion in Model)
+{
+    <h2>@promotion.Title</h2>
+    <p>@promotion.Description</p> 
+}

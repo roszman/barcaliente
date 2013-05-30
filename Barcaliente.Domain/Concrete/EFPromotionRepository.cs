@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Barcaliente.Domain.Concrete
 {
-    public class EFMealRepository : IMealRepository
+    public class EFPromotionRepository : IPromotionRepository
     {
         private Context context = new Context();
-        public IQueryable<Meal> Meals
+        public IQueryable<Promotion> Promotions
         {
-            get { return context.Meals; }
+            get { return context.Promotions; }
         }
     }
 }

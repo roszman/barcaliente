@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Barcaliente.Domain.Concrete
+namespace Barcaliente.Domain.Entities
 {
     public class Meal
     {

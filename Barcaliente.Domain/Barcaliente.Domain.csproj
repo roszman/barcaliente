@@ -47,10 +47,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IMealRepository.cs" />
+    <Compile Include="Abstract\IPromotionRepository.cs" />
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="Concrete\EFConfiguration.cs" />
     <Compile Include="Concrete\EFMealRepository.cs" />
+    <Compile Include="Concrete\EFPromotionRepository.cs" />
     <Compile Include="Entities\Meal.cs" />
+    <Compile Include="Entities\Promotion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

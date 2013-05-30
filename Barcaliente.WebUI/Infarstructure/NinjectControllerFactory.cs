@@ -27,6 +27,7 @@ namespace Barcaliente.WebUI.Infarstructure
         private void AddBindings()
         {
             _ninjectKernel.Bind<IMealRepository>().To<EFMealRepository>();
+            _ninjectKernel.Bind<IPromotionRepository>().To<EFPromotionRepository>();
         }
     }
 }

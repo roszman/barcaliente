@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Barcaliente.Domain.Concrete;
+using Barcaliente.Domain.Entities;
 
 namespace Barcaliente.WebUI.Models
 {

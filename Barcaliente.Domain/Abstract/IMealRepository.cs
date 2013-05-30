@@ -1,4 +1,4 @@
-﻿using Barcaliente.Domain.Concrete;
+﻿using Barcaliente.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
