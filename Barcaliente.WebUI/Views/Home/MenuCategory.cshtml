@@ -7,38 +7,6 @@
                 <h2 class="padd">Ceny: <span>@Model.CategoryName</span></h2>
             </div>
         </div>
-        <div class="grid_4">
-            <div class="inner-block">
-                <ul class="list-1 top-1 bot-2">
-                    @foreach (var meal in Model.MealsInCategoryViewThreeColumns[0])
-                    {
-                        <li>@meal.Name<span>@meal.Price PLN</span><strong>&nbsp;</strong></li>
-                    }
-                </ul>
-            </div>
-        </div>
-        <div class="grid_4">
-            <div class="inner-block">
-                <ul class="list-1 top-1">
-                    @foreach (var meal in Model.MealsInCategoryViewThreeColumns[1])
-                    {
-                        <li>@meal.Name<span>@meal.Price PLN</span><strong>&nbsp;</strong></li>
-                    }
-                </ul>
-            </div>
-        </div>
-
-        <div class="grid_4">
-            <div class="inner-block">
-                <ul class="list-1 top-1 bot-2">
-                    @foreach (var meal in Model.MealsInCategoryViewThreeColumns[2])
-                    {
-                        <li>@meal.Name<span>@meal.Price PLN</span><strong>&nbsp;</strong></li>
-                    }
-                </ul>
-
-            </div>
-        </div>
-        <div class="clear"></div>
+        @Html.Partial("_MenuCategory", Model);
     </div>
 </section>

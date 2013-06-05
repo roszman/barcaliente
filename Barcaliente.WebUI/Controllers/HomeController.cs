@@ -33,7 +33,7 @@ namespace Barcaliente.WebUI.Controllers
 
         public ViewResult MenuCategory(string categoryName)
         {
-            List<Meal> mealsInCategory = _mealRepository.Meals.Where(m => m.Category == categoryName).ToList();
+            List<Meal> mealsInCategory = _mealRepository.Meals.Where(m => m.Category == categoryName && m.IsDeleted == false).OrderBy(m => m.Order).ToList();
             if (mealsInCategory.Count() > 0)
             {
                 int mealsCategoryByThree = SplitMealsInCategoryInThreeEqualParts(mealsInCategory.Count());

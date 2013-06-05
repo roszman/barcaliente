@@ -1,0 +1,39 @@
+﻿@using Barcaliente.WebUI.Models
+@model MenuCategoryViewModel
+
+        <div class="grid_4">
+            <div class="inner-block">
+                <ul class="list-1 top-1 bot-2">
+                    @foreach (var meal in Model.MealsInCategoryViewThreeColumns[0])
+                    {
+                        @Html.Partial("_MenuItem",meal)
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="grid_4">
+            <div class="inner-block">
+                <ul class="list-1 top-1">
+                    @foreach (var meal in Model.MealsInCategoryViewThreeColumns[1])
+                    {
+                        @Html.Partial("_MenuItem",meal)
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <div class="grid_4">
+            <div class="inner-block">
+                <ul class="list-1 top-1 bot-2">
+                    @foreach (var meal in Model.MealsInCategoryViewThreeColumns[2])
+                    {
+                        @Html.Partial("_MenuItem",meal)
+                    }
+                </ul>
+
+            </div>
+        </div>
+        <div class="clear"></div>
+<script>
+    $(".tooltip").tooltipster({ trigger: 'hover', delay: 100 });
+</script>

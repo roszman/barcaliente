@@ -134,6 +134,7 @@
     <Content Include="Content\css\skeleton.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\superfish.css" />
+    <Content Include="Content\css\tooltipster.css" />
     <Content Include="Content\css\ui.totop.css" />
     <Content Include="Content\images\bg-arrov.png" />
     <Content Include="Content\images\bg-block-1.png" />
@@ -169,7 +170,7 @@
     <Content Include="Content\images\meals\Chiliconcarne.jpg" />
     <Content Include="Content\images\meals\don kogutto sałatka.jpg" />
     <Content Include="Content\images\meals\fajita.jpg" />
-    <Content Include="Content\images\meals\greckasałatka.jpg" />
+    <Content Include="Content\images\meals\greckasalatka.jpg" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\gallery\DSC_3157.jpg" />
     <Content Include="Content\images\gallery\DSC_3158.jpg" />
@@ -215,6 +216,7 @@
     <Content Include="Content\images\top.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\camera.js" />
+    <Content Include="Scripts\jquery-1.10.1.min.js" />
     <Content Include="Scripts\forms.js" />
     <Content Include="Scripts\html5.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -223,6 +225,8 @@
     <Content Include="Scripts\jquery.hoverIntent.minified.js" />
     <Content Include="Scripts\jquery.mobile.customized.min.js" />
     <Content Include="Scripts\jquery.mobilemenu.js" />
+    <Content Include="Scripts\jquery.tooltipster.js" />
+    <Content Include="Scripts\jquery.tooltipster.min.js" />
     <Content Include="Scripts\jquery.ui.totop.js" />
     <Content Include="Scripts\script.js" />
     <Content Include="Scripts\superfish.js" />
@@ -284,6 +288,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\NoMealsIncategory.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\_MenuItem.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\_MenuCategory.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery.tooltipster.min.js.map">
+      <DependentUpon>jquery.tooltipster.js</DependentUpon>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

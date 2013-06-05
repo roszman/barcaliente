@@ -1,0 +1,6 @@
+﻿@model Barcaliente.Domain.Entities.Meal
+@{string tootlitpText = string.IsNullOrEmpty(Model.Description) ? "Brak opisu" : Model.Description;}
+<li class="tooltip" title="@tootlitpText">
+    @Model.Name<span>@Model.Price PLN</span>
+    <strong>&nbsp;</strong>
+</li>
