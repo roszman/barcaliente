@@ -33,6 +33,12 @@ namespace Barcaliente.WebUI.Controllers
 
         public ViewResult MenuCategory(string categoryName)
         {
+            return GetMenuCategoryViewModelForCategory(categoryName);
+            
+        }
+
+        private ViewResult GetMenuCategoryViewModelForCategory(string categoryName)
+        {
             List<Meal> mealsInCategory = _mealRepository.Meals.Where(m => m.Category == categoryName && m.IsDeleted == false).OrderBy(m => m.Order).ToList();
             if (mealsInCategory.Count() > 0)
             {
@@ -43,13 +49,12 @@ namespace Barcaliente.WebUI.Controllers
                 mealsInCategoryViewThreeColumns[1] = mealsInCategory.Skip(mealsCategoryByThree).Take(mealsCategoryByThree).ToList();
                 mealsInCategoryViewThreeColumns[2] = mealsInCategory.Skip(mealsCategoryByThree * 2).ToList();
 
-                return View(new MenuCategoryViewModel {CategoryName = categoryName, MealsInCategoryViewThreeColumns = mealsInCategoryViewThreeColumns });
+                return View(new MenuCategoryViewModel { CategoryName = categoryName, MealsInCategoryViewThreeColumns = mealsInCategoryViewThreeColumns });
             }
             else
             {
                 return View("NoMealsIncategory", null, categoryName);
             }
-            
         }
 
         private static int SplitMealsInCategoryInThreeEqualParts(int mealsInCategory)
@@ -79,7 +84,7 @@ namespace Barcaliente.WebUI.Controllers
 
         public ViewResult SpecialOrders()
         {
-            return View();
+            return GetMenuCategoryViewModelForCategory("Zamówienia Specjalne");
         }
 
         public ViewResult Gallery()

@@ -1,26 +1,43 @@
-﻿<section id="content">
+﻿@using Barcaliente.WebUI.Models
+@model MenuCategoryViewModel
+<section id="content">
     <div class="container_12">
         <div class="grid_12">
-            <h2>Zamówienia specjalne</h2>
-            <h3>Przyjmowane z 24h wyprzedzeniem.</h3>
-            <p>Zabrakło ci czasu na przygotowanie kolacji dla przyjaciół? Zadzwoń do nas!</p>
-            <p>Przyjeżdżaja niespodziewani goście?</p>
-            <p>Przykładowe menu dla 4 osób za 200 PLN:</p>
-            <ul>
-                <li>Kanapeczki bankietowe 24szt:
+            <h2 class="padd">Zamówienia <span>specjalne</span></h2>
+        </div>
+        <div class="grid_4">
+
+            <div class="inner-block">                
+                <span class="font-14 top-1  ">Przyjmowane z 24h wyprzedzeniem.</span>                
+                <p class="top-1">Zabrakło ci czasu na przygotowanie kolacji dla przyjaciół? Zadzwoń do nas!</p>
+                <h2 class="padd ">Przyjeżdżaja <span>niespodziewani goście?</span></h2>
+                <figure class="bot">
+                    <img src="~/Content/images/page-1-img.jpg" alt="zdjęcie dania" />
+                </figure>
+                <span class="font-14">Przykładowe menu dla 4 osób za 200 PLN:</span>
+                <ul class="list">
+                    <li>Kanapeczki bankietowe 24szt:
                     <ul>
                         <li>z mascarpone i ziołami</li>
                         <li>śledź a'la łosoś</li>
                         <li>z awokado i gruszką</li>
                     </ul>
-                </li>
-                <li>Śliwki z boczkiem</li>
-                <li>Sałatka lodowa z suszonym pomidorem i serem grana padano</li>
-                <li>Antonówka faszerowana kaszanką</li>
-                <li>Pierś kurczaka w sosie śmietanowo-winnym</li>
-                <li>frytki</li>
-            </ul>
-            <p>Serwujemy na półmiskach klienta lub naszych (kaucja 15 PLN/naczynie), bądź na życzenie klienta w opakowaniach jednorazowych.</p>
+                    </li>
+                    <li>Śliwki z boczkiem</li>
+                    <li>Sałatka lodowa z suszonym pomidorem i serem grana padano</li>
+                    <li>Antonówka faszerowana kaszanką</li>
+                    <li>Pierś kurczaka w sosie śmietanowo-winnym</li>
+                    <li>frytki</li>
+                </ul>
+                <span class="font-14">Serwujemy na półmiskach klienta lub naszych (kaucja 15 PLN/naczynie), bądź na życzenie klienta w opakowaniach jednorazowych.</span>
+            </div>
+        </div>
+        <div class="grid_8 special-orders">
+            <div class="inner-block">
+            @Html.Partial("_SpecialOrders", Model);
+                </div>
         </div>
     </div>
+
+
 </section>

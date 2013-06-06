@@ -127,6 +127,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\css\barcaliente.css" />
     <Content Include="Content\css\camera-slider.css" />
     <Content Include="Content\css\forms.css" />
     <Content Include="Content\css\ie.css" />
@@ -299,6 +300,9 @@
     <Content Include="Scripts\jquery.tooltipster.min.js.map">
       <DependentUpon>jquery.tooltipster.js</DependentUpon>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\_SpecialOrders.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

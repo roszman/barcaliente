@@ -1,9 +1,9 @@
 ﻿@using Barcaliente.WebUI.Models
 @model MenuCategoryViewModel
 
-        <div class="grid_4">
+        <div class="grid_8">
             <div class="inner-block">
-                <ul class="list-1 top-1 bot-2 ">
+                <ul class="list-1 top-1 bot-2">
                     @foreach (var meal in Model.MealsInCategoryViewThreeColumns[0])
                     {
                         @Html.Partial("_MenuItem",meal)
@@ -11,7 +11,7 @@
                 </ul>
             </div>
         </div>
-        <div class="grid_4">
+        <div class="grid_8">
             <div class="inner-block">
                 <ul class="list-1 top-1 bot-2">
                     @foreach (var meal in Model.MealsInCategoryViewThreeColumns[1])
@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <div class="grid_4">
+        <div class="grid_8">
             <div class="inner-block">
                 <ul class="list-1 top-1 bot-2">
                     @foreach (var meal in Model.MealsInCategoryViewThreeColumns[2])
