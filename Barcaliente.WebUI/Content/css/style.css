@@ -156,8 +156,9 @@ h1 {
     margin: 0;
     position: relative;
     text-align: center;
-    top: -33px;
+    top: -77px;
     z-index: 9;
+    height:95px;
 }
 
 .last5 {
