@@ -151,12 +151,12 @@ ul {
 /*===============================>H-logo-properties=========================*/ 
 
 h1 {
-    background: url("../images/bg-h1.png") no-repeat scroll 0 41px transparent;
+    background: url("../images/bg-h1.png") no-repeat scroll 0 90px transparent;
     display: block;
     margin: 0;
     position: relative;
     text-align: center;
-    top: -13px;
+    top: -33px;
     z-index: 9;
 }
 
