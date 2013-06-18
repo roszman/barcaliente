@@ -543,7 +543,7 @@ header{
 	}
 .height{height:8px;}
 
-#bg{background: url(../images/page-2-img.jpg) right 0 no-repeat #dbd9d9;}
+/*#bg{background: url(../images/page-2-img.jpg) right 0 no-repeat #dbd9d9;}*/
 #bg-1{background: url(../images/page-2-img-1.jpg) right 0 no-repeat #dbd9d9;}
 #bg-2{background: url(../images/page-2-img-2.jpg) right 0 no-repeat #dbd9d9;}
 #bg-3{background: url(../images/page-2-img-3.jpg) right 0 no-repeat #dbd9d9;}
@@ -552,7 +552,7 @@ header{
 #bg-6{background: url(../images/page-2-img-6.jpg) right 0 no-repeat #dbd9d9;}
 #bg-7{background: url(../images/page-2-img-7.jpg) right 0 no-repeat #dbd9d9;}
 #bg-8{background: url(../images/page-2-img-8.jpg) right 0 no-repeat #dbd9d9;}
-
+#bg{background: url(../images/meals/menu-thumbnails/pizza.jpg) right 0 no-repeat #dbd9d9;}
 .block-4{
 	border:1px solid #fff;
 	background:#eeeeee;
