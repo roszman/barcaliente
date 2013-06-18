@@ -189,7 +189,11 @@
     <Content Include="Content\images\marker.png" />
     <Content Include="Content\images\meals\karkowkamuchomacho.jpg" />
     <Content Include="Content\images\meals\koreczki.jpg" />
+    <Content Include="Content\images\meals\menu-thumbnails\pizza.jpg" />
     <Content Include="Content\images\meals\tacos.jpg" />
+    <Content Include="Content\images\meals\thumbnails\Cheesy-Garlic-Bread-11-600x398.jpg" />
+    <Content Include="Content\images\meals\thumbnails\donkoguttosałatka.jpg" />
+    <Content Include="Content\images\meals\thumbnails\karkowkamuchomacho.jpg" />
     <Content Include="Content\images\next.png" />
     <Content Include="Content\images\page-1-img-1.jpg" />
     <Content Include="Content\images\page-1-img.jpg" />
