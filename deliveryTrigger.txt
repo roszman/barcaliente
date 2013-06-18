@@ -1,1 +1,2 @@
 drugie delivery na produkcje
+problem z zaciaganiem zrodel z githuba
