@@ -1,2 +1,3 @@
 drugie delivery na produkcje
 problem z zaciaganiem zrodel z githuba
+problem z delivery na prod
