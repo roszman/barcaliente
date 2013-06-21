@@ -1,0 +1,71 @@
+﻿@using Barcaliente.Domain.Entities
+@model User
+
+@{
+    ViewBag.Title = "Login";
+}
+
+@*<h2>Login</h2>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginForm())
+{ 
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Enter user credentials</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+        <p>
+            <input type="submit" value="Login">
+        </p>
+    </fieldset>
+}*@
+<div class="row-fluid">
+    <div class="span12">
+        <div class="span6 offset3">
+            <form class="form-horizontal center" action='/Administration/Account/Login' method="POST">
+                <fieldset>
+                    <div id="legend">
+                        <legend class="">Login</legend>
+                    </div>
+                    <div class="control-group">
+                        <!-- Username -->
+                        <label class="control-label" for="username">Username</label>
+                        <div class="controls">
+                            <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <!-- Password-->
+                        <label class="control-label" for="password">Password</label>
+                        <div class="controls">
+                            <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+                        </div>
+                    </div>
+
+
+                    <div class="control-group">
+                        <!-- Button -->
+                        <div class="controls">
+                            <button class="btn btn-success">Login</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

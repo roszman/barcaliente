@@ -1,14 +1,13 @@
-﻿using Barcaliente.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using Barcaliente.Domain.Entities;
 
 namespace Barcaliente.Domain.Abstract
 {
     public interface IMealRepository
     {
         IQueryable<Meal> Meals { get; }
+        bool Save(Meal meal);
+        bool Delete(int mealId);
+        bool Edit(string stringMealId, string value, string propertyToUpdate);
     }
 }

@@ -10,6 +10,7 @@ using Barcaliente.Domain.Entities;
 
 namespace Barcaliente.WebUI.Controllers
 {
+    //[Authorize]
     public class HomeController : Controller
     {
         private IMealRepository _mealRepository;

@@ -1,0 +1,317 @@
+﻿@model IEnumerable<Meal>
+
+@{
+    ViewBag.Title = "Edycja menu";
+                    //Layout = "~/Areas/Administration/Views/Shared/_BootstrapLayout.cshtml";
+}
+<div class="row-fluid">
+    <div class="span12">
+        <a style="float: right" href="#" data-toggle="chardinjs"><i class="icon-question-sign"></i></a>
+        <h2>Dodaj nowe danie</h2>
+        <table id="add-new-meal-table" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="bootstrap-header">Nazwa</th>
+                    <th>Opis</th>
+                    <th>Kategoria</th>
+                    <th>Cena</th>
+                    <th>Dodaj</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="text" id="new-meal-name" data-intro="Zeby dodać danie: tutaj wpisz nazwę," data-position="top" /></td>
+                    <td>
+                        <input type="text" id="new-meal-description" data-intro="tutaj opis dania," data-position="top" ></input></td>
+                    <td>
+                        <input type="text" id="new-meal-category" data-intro="tutaj kategorię," data-position="top" /></td>
+                    <td>
+                        <input type="text" id="new-meal-price" data-intro="a tutaj cenę dania," data-position="top" /></td>
+                    <td>
+                        <button class="btn btn-success" id="add-new-meal" type="button" data-intro="kliknij przycisk" data-position="top" data-loading-text="zapisuję...<i class='icon-spinner icon-spin'></i>">Dodaj</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Edytuj menu</h2>
+
+        <table id="menuTable" class="table table-striped table-bordered">
+            <thead>
+                <tr data-intro="Tutaj możesz filrować listę dań" data-position="top">
+                    <th>Nazwa</th>
+                    <th>Opis</th>
+                    <th>Kategoria</th>
+                    <th>Cena</th>
+                    <th>Usuń</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var meal in Model)
+                {
+                    <tr id="@meal.MealID">
+                        <td><span class="editable editable-meal-name" data-name="Name" data-type="text" data-pk="@meal.MealID" data-url="/administration/menu/edit">@meal.Name</span></td>
+                        <td><span class="editable" data-type="textarea" data-name="Description" data-pk="@meal.MealID" data-url="/administration/menu/edit">@meal.Description</span></td>
+                        <td><span class="editable editable-meal-category" data-name="Category" data-type="text" data-pk="@meal.MealID" data-url="/administration/menu/edit">@meal.Category</span></td>
+                        <td><span class="editable editable-meal-price" data-name="Price" data-type="text" data-pk="@meal.MealID" data-url="/administration/menu/edit">@meal.Price</span></td>
+                        <td>
+                            <button class="btn btn-danger showDeleteConfirmationModal" data-toggle="modal" data-target="#doYouReallyWantDelete" data-mealId="@meal.MealID" type="button">Usuń</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="doYouReallyWantDelete" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Uwaga!</h3>
+    </div>
+    <div class="modal-body">
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Nie chcę nic usuwać!</button>
+        <button id="deleteMeal" data-dismiss="modal" class="btn btn-danger">Usuń</button>
+    </div>
+</div>
+<script>
+
+
+    $(document).ready(function () {
+        //$("#menuTable").tablesorter();
+
+        //$.ajaxOptions({
+        //    cache: false,
+        //    error: function (x, e) {
+        //        if (x.status == 0) {
+        //            alert('You are offline!!\n Please Check Your Network.');
+        //        } else if (x.status == 404) {
+        //            alert('Requested URL not found.');
+        //        } else if (x.status == 500) {
+        //            alert('Internal Server Error.');
+        //        } else if (e == 'parsererror') {
+        //            alert('Error.\nParsing JSON Request failed.');
+        //        } else if (e == 'timeout') {
+        //            alert('Request Time out.');
+        //        } else {
+        //            alert('Unknown Error.\n' + x.responseText);
+        //        }
+        //    }
+        //});
+
+        var menuTable = $("#menuTable");
+
+
+        $.fn.editable.defaults.mode = "inline";
+        $('.editable').editable({
+            success: function (data) {
+                //if (!response.success) return response.msg;
+                console.log(data);
+                alertify.success(data.message);
+            },
+            error: function (data) {
+                console.log(data);
+                alertify.error(data.responseJSON);
+            }
+        });//{ name: $(this).attr("data-model-property-name")}
+
+
+        $('.editable-meal-name').editable('option', 'validate', function (v) {
+            if (!v) { return 'Nazwij mnie'; }
+            else { alertify.success("Modyfikacja się powiodła :)"); }
+
+        });
+        $('.editable-meal-category').editable('option', 'validate', function (v) {
+            if (!v) return 'Ej, no wpisz tę kategorię';
+        });
+        $('.editable-meal-price').editable('option', 'validate', function (v) {
+            if (!v) { return 'Chcesz oddać to za darmo???'; }
+            else if (!v.match(/^\d+([\,]\d\d)?$/))
+            {
+                return "Zły format ceny, do części dzieśiętnych użyj przecinka";
+            }
+        });
+        
+        
+
+        
+        $('.showDeleteConfirmationModal').on('click', function () {
+            showDeleteConfirmationModal.call(this);
+        });
+
+
+        var deleteMealButton = $('#deleteMeal');
+
+
+        function showDeleteConfirmationModal() {
+            //console.log(this);
+            var $this = $(this);
+            console.log(this);
+            var tableRow = $this.parent().parent();
+            console.log(tableRow);
+            var mealId = $this.data('mealid');
+            var mealName = tableRow.find('td:first-child > span').text();
+            var mealCategory = tableRow.find('td:nth-child(3) > span').text();
+            //console.log(mealName);
+            $('.modal-body').html("<p>Czy na pewno chcesz usnąć: " + mealName + "?</p>");
+            deleteMealButton.data('mealId', mealId);
+        }
+
+
+        
+        deleteMealButton.on("click", function () {
+            deleteMeal($(this).data("mealId"));
+            //console.log($(this).data("mealId"));
+        });
+
+        function deleteMeal(mealId) {
+            $.ajax({
+                type: 'POST',
+                url: '/Administration/Menu/Delete',
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: "{'stringMealId': '" + mealId + "'}",
+                success: function (data) {
+                    alertify.success(data.message);
+                    removeTableRow(mealId);
+                },
+                error: function (data) {
+                    alertify.error(data.responseJSON);
+                }
+            });
+        }
+
+        function removeTableRow(mealId) {
+            var selector = "#" + mealId
+            menuTable.find(selector).fadeOut();
+
+            //console.log(mealId);
+        }
+
+        $.extend($.tablesorter.themes.bootstrap, {
+            // these classes are added to the table. To see other table classes available,
+            // look here: http://twitter.github.com/bootstrap/base-css.html#tables
+            table: 'table table-bordered',
+            header: 'bootstrap-header', // give the header a gradient background
+            footerRow: '',
+            footerCells: '',
+            icons: '', // add "icon-white" to make them white; this icon class is added to the <i> in the header
+            sortNone: 'bootstrap-icon-unsorted',
+            sortAsc: 'icon-chevron-up',
+            sortDesc: 'icon-chevron-down',
+            active: '', // applied when column is sorted
+            hover: '', // use custom css here - bootstrap class may not override it
+            filterRow: '', // filter row class
+            even: '', // odd row zebra striping
+            odd: ''  // even row zebra striping
+        });
+
+        menuTable.tablesorter({
+            // this will apply the bootstrap theme if "uitheme" widget is included
+            // the widgetOptions.uitheme is no longer required to be set
+            theme: "bootstrap",
+
+            widthFixed: true,
+
+            headerTemplate: '{content} {icon}', // new in v2.7. Needed to add the bootstrap icon!
+
+            // widget code contained in the jquery.tablesorter.widgets.js file
+            // use the zebra stripe widget if you plan on hiding any rows (filter widget)
+            widgets: ["uitheme", "filter", "zebra"],
+
+            widgetOptions: {
+                // using the default zebra striping class name, so it actually isn't included in the theme variable above
+                // this is ONLY needed for bootstrap theming if you are using the filter widget, because rows are hidden
+                zebra: ["even", "odd"],
+
+                // reset filters button
+                filter_reset: ".reset"
+
+                // set the uitheme widget to use the bootstrap theme class names
+                // this is no longer required, if theme is set
+                // ,uitheme : "bootstrap"
+
+            }
+        });
+
+        $("input[data-column='0']").attr("data-intro", "filtruj po nazwie").attr("data-position", "bottom");
+        $("input[data-column='1']").attr("data-intro", "filtruj po opisie").attr("data-position", "bottom");
+        $("input[data-column='2']").attr("data-intro", "filtruj po kategorii").attr("data-position", "bottom");
+        $("input[data-column='3']").attr("data-intro", "filtruj po cenie").attr("data-position", "bottom");
+
+        $('a[data-toggle="chardinjs"]').on('click', function (e) {
+            e.preventDefault();
+            $('body').chardinJs('start');
+        });
+
+        function addNewMealToTable(newMeal) {
+            
+            var newMealName = newMeal.Name === null ? "<i style='color: red'>Empty</i>" : newMeal.Name;
+            var newMealDescription = newMeal.Description === null ? "<i style='color: red'>Empty</i>" : newMeal.Description;
+            var newMealCategory = newMeal.Category === null ? "<i style='color: red'>Empty</i>" : newMeal.Category;
+            var newMealPrice = newMeal.Price === null ? "<i style='color: red'>Empty</i>" : newMeal.Price.toFixed(2).toString().replace(".", ",");
+
+            var newTr = $("<tr></tr>").attr("id", newMeal.MealID);
+            newTr.append("<td><span class='editable-meal-name editable editable-click' data-type='text' data-name='Name' data-pk='" + newMeal.MealID + "' data-url='/administration/menu/edit'>" + newMealName + "</span></td>");
+            newTr.append("<td><span class='editable editable-click editable-empty' data-type='textarea' data-name='Description' data-pk='" + newMeal.MealID + "' data-url='/administration/menu/edit'>" + newMealDescription + "</span></td>");
+            newTr.append("<td><span class='editable-meal-category editable editable-click' data-type='text' data-name='Category' data-pk='" + newMeal.MealID + "' data-url='/administration/menu/edit'>" + newMealCategory + "</span></td>");
+            newTr.append("<td><span class='editable-meal-price editable editable-click' data-type='text' data-name='Price' data-pk='" + newMeal.MealID + "' data-url='/administration/menu/edit'>" + newMealPrice + "</span></td>");
+            newTr.append("<td><button class='btn btn-danger showDeleteConfirmationModal' data-toggle='modal' data-target='#doYouReallyWantDelete' data-mealid='" + newMeal.MealID + "' type='button'>Usuń</button></td>");
+
+            newTr.find('button').on('click', function () {
+                showDeleteConfirmationModal.call(this);
+            });
+
+            menuTable
+                .find("tbody")
+                .prepend(newTr)
+                .find("td > span").editable();
+        }
+
+
+        function clearAddNewMealForm() {
+            $("#add-new-meal-table > tbody > tr > td > input").val("");
+        }
+
+        function addNewMeal() {
+            var $this = $(this);
+            $this.button('loading');
+            var newMealName = $("#new-meal-name").val();
+            var newMealDescription = $("#new-meal-description").val();
+            var newMealCategory = $("#new-meal-category").val();
+            var newMealPrice = $("#new-meal-price").val();
+
+            $.ajax({
+                type: 'POST',
+                url: '/Administration/Menu/Add',
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ name: newMealName, description: newMealDescription, category: newMealCategory, price: newMealPrice }),
+                success: function (data) {
+                    alertify.success(data.message);
+                    //console.log(data);
+                    addNewMealToTable(data.meal);
+                    clearAddNewMealForm();
+                    $this.button('reset');
+                },
+                error: function (data) {
+                    //console.log(data.responseJSON);
+
+                    for(var i = 0; i < data.responseJSON.length; i++) {
+                        //console.log(data.responseJSON);
+                        alertify.error(data.responseJSON[i].ErrorMessage);
+                    }
+                    
+                    $this.button('reset');
+
+                }
+            });
+        }
+
+        $("#add-new-meal").on("click", function () {
+            addNewMeal.call(this);
+        });
+    });
+</script>

@@ -12,6 +12,7 @@ namespace Barcaliente.Domain.Concrete
     {
         public DbSet<Meal> Meals { get; set; }
         public DbSet<Promotion> Promotions { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

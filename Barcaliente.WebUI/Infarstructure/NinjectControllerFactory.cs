@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Barcaliente.WebUI.Infarstructure.Abstract;
+using Barcaliente.WebUI.Infarstructure.Concrete;
 
 namespace Barcaliente.WebUI.Infarstructure
 {
@@ -28,6 +30,8 @@ namespace Barcaliente.WebUI.Infarstructure
         {
             _ninjectKernel.Bind<IMealRepository>().To<EFMealRepository>();
             _ninjectKernel.Bind<IPromotionRepository>().To<EFPromotionRepository>();
+            _ninjectKernel.Bind<IUserRepository>().To<EFUserRepository>();
+            _ninjectKernel.Bind<IAuthProvider>().To<CustomFormsAuthProvider>();
         }
     }
 }
