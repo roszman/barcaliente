@@ -1,2 +1,7 @@
 drugie delivery na produkcje
+<<<<<<< HEAD
 problem z zaciaganiem zrodel z githuba
+=======
+problem z zaciaganiem zrodel z githuba
+problem z delivery na prod x4
+>>>>>>> origin/master
