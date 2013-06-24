@@ -42,7 +42,7 @@ namespace Barcaliente.WebUI.Areas.Administration.Controllers
                     return new JsonResult { Data = new { message = "Udało się zapisać zmiany ;)" } };
                 }
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
                 Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 return new JsonResult { Data = "Ojojoj, ktoś tu podał dane w złym formacie..." };                      
