@@ -82,24 +82,24 @@
     $(document).ready(function () {
         //$("#menuTable").tablesorter();
 
-        //$.ajaxOptions({
-        //    cache: false,
-        //    error: function (x, e) {
-        //        if (x.status == 0) {
-        //            alert('You are offline!!\n Please Check Your Network.');
-        //        } else if (x.status == 404) {
-        //            alert('Requested URL not found.');
-        //        } else if (x.status == 500) {
-        //            alert('Internal Server Error.');
-        //        } else if (e == 'parsererror') {
-        //            alert('Error.\nParsing JSON Request failed.');
-        //        } else if (e == 'timeout') {
-        //            alert('Request Time out.');
-        //        } else {
-        //            alert('Unknown Error.\n' + x.responseText);
-        //        }
-        //    }
-        //});
+        $.ajaxSetup({
+            cache: false,
+            error: function (x, e) {
+                if (x.status == 0) {
+                    alert('You are offline!!\n Please Check Your Network.');
+                } else if (x.status == 404) {
+                    alert('Requested URL not found.');
+                } else if (x.status == 500) {
+                    alert('Internal Server Error.');
+                } else if (e == 'parsererror') {
+                    alert('Error.\nParsing JSON Request failed.');
+                } else if (e == 'timeout') {
+                    alert('Request Time out.');
+                } else {
+                    alert('Unknown Error.\n' + x.responseText);
+                }
+            }
+        });
 
         var menuTable = $("#menuTable");
 
@@ -115,7 +115,7 @@
                 console.log(xhr);
                 console.log(textStatus);
                 console.log(errorThrown);
-                alertify.error(xhr.responseText);
+                //alertify.error(xhr.responseText);
             }
         });//{ name: $(this).attr("data-model-property-name")}
 
@@ -178,13 +178,14 @@
                 success: function (data) {
                     alertify.success(data.message);
                     removeTableRow(mealId);
-                },
-                error: function (xhr, textStatus, errorThrown) {
-                    console.log(xhr);
-                    console.log(textStatus);
-                    console.log(errorThrown);
-                    alertify.error(xhr.responseText);
                 }
+                //,
+                //error: function (xhr, textStatus, errorThrown) {
+                //    console.log(xhr);
+                //    console.log(textStatus);
+                //    console.log(errorThrown);
+                //    alertify.error(xhr.responseText);
+                //}
             });
         }
 
@@ -300,22 +301,22 @@
                     addNewMealToTable(data.meal);
                     clearAddNewMealForm();
                     $this.button('reset');
-                },
-                error: function (xhr, textStatus, errorThrown) {
-                    //console.log(data.responseJSON);
-                    console.log(xhr);
-                    console.log(textStatus);
-                    console.log(errorThrown);
-                    var errorsJson = JSON.parse(xhr.responseText);
-                    console.log(errorsJson);
-                    for(var i = 0; i < errorsJson.length; i++) {
-                        //console.log(data.responseJSON);
-                        alertify.error(errorsJson[i].ErrorMessage);
-                    }
-                    
-                    $this.button('reset');
-
                 }
+                //error: function (xhr, textStatus, errorThrown) {
+                    ////console.log(data.responseJSON);
+                    //console.log(xhr);
+                    //console.log(textStatus);
+                    //console.log(errorThrown);
+                    //var errorsJson = JSON.parse(xhr.responseText);
+                    //console.log(errorsJson);
+                    //for(var i = 0; i < errorsJson.length; i++) {
+                    //    //console.log(data.responseJSON);
+                    //    alertify.error(errorsJson[i].ErrorMessage);
+                    //}
+                    
+                    //$this.button('reset');
+
+                //}
             });
         }
 

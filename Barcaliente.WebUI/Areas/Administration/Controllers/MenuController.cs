@@ -83,6 +83,7 @@ namespace Barcaliente.WebUI.Areas.Administration.Controllers
                 Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 return new JsonResult { Data = "Stało się coś mrocznego" };
             }
+
             Response.StatusCode = (int)HttpStatusCode.BadRequest;
             return new JsonResult { Data = ModelState.Values.SelectMany(v => v.Errors) };
         }
