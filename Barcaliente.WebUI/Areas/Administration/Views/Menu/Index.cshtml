@@ -111,9 +111,11 @@
                 console.log(data);
                 alertify.success(data.message);
             },
-            error: function (data) {
-                console.log(data);
-                alertify.error(data.responseJSON);
+            error: function (xhr, textStatus, errorThrown) {
+                console.log(xhr);
+                console.log(textStatus);
+                console.log(errorThrown);
+                alertify.error(xhr.responseText);
             }
         });//{ name: $(this).attr("data-model-property-name")}
 
@@ -177,8 +179,11 @@
                     alertify.success(data.message);
                     removeTableRow(mealId);
                 },
-                error: function (data) {
-                    alertify.error(data.responseJSON);
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log(xhr);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                    alertify.error(xhr.responseText);
                 }
             });
         }
@@ -291,17 +296,21 @@
                 data: JSON.stringify({ name: newMealName, description: newMealDescription, category: newMealCategory, price: newMealPrice }),
                 success: function (data) {
                     alertify.success(data.message);
-                    //console.log(data);
+                    console.log(data);
                     addNewMealToTable(data.meal);
                     clearAddNewMealForm();
                     $this.button('reset');
                 },
-                error: function (data) {
+                error: function (xhr, textStatus, errorThrown) {
                     //console.log(data.responseJSON);
-
-                    for(var i = 0; i < data.responseJSON.length; i++) {
+                    console.log(xhr);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                    var errorsJson = JSON.parse(xhr.responseText);
+                    console.log(errorsJson);
+                    for(var i = 0; i < errorsJson.length; i++) {
                         //console.log(data.responseJSON);
-                        alertify.error(data.responseJSON[i].ErrorMessage);
+                        alertify.error(errorsJson[i].ErrorMessage);
                     }
                     
                     $this.button('reset');
