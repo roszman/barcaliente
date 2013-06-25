@@ -1,8 +1,9 @@
-﻿@model IEnumerable<Meal>
+﻿@model Barcaliente.WebUI.Areas.Administration.Models.MenuAdministrationModel
 
 @{
     ViewBag.Title = "Edycja menu";
                     //Layout = "~/Areas/Administration/Views/Shared/_BootstrapLayout.cshtml";
+    Meal NewMeal = new Meal();
 }
 <div class="row-fluid">
     <div class="span12">
@@ -21,7 +22,10 @@
             <tbody>
                 <tr>
                     <td>
-                        <input type="text" id="new-meal-name" data-intro="Zeby dodać danie: tutaj wpisz nazwę," data-position="top" /></td>
+                        <input type="text" id="new-meal-name" data-intro="Zeby dodać danie: tutaj wpisz nazwę," data-position="top" />
+                        @*@Html.TextBoxFor(model => model.NewMeal.Name, new Dictionary<string, Object> {{"data-intro", "Zeby dodać danie: tutaj wpisz nazwę,"}, {"data-position", "top"}})
+                        @Html.ValidationMessageFor(model => model.NewMeal.Name)*@
+                    </td>
                     <td>
                         <input type="text" id="new-meal-description" data-intro="tutaj opis dania," data-position="top" ></input></td>
                     <td>
@@ -48,7 +52,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var meal in Model)
+                @foreach (var meal in Model.Meals)
                 {
                     <tr id="@meal.MealID">
                         <td><span class="editable editable-meal-name" data-name="Name" data-type="text" data-pk="@meal.MealID" data-url="/administration/menu/edit">@meal.Name</span></td>
@@ -82,24 +86,39 @@
     $(document).ready(function () {
         //$("#menuTable").tablesorter();
 
-        $.ajaxSetup({
-            cache: false,
-            error: function (x, e) {
-                if (x.status == 0) {
-                    alert('You are offline!!\n Please Check Your Network.');
-                } else if (x.status == 404) {
-                    alert('Requested URL not found.');
-                } else if (x.status == 500) {
-                    alert('Internal Server Error.');
-                } else if (e == 'parsererror') {
-                    alert('Error.\nParsing JSON Request failed.');
-                } else if (e == 'timeout') {
-                    alert('Request Time out.');
-                } else {
-                    alert('Unknown Error.\n' + x.responseText);
-                }
-            }
-        });
+        var ADD_NEW_MEAL_ERROR_MSG_PREFIX = "NewMealErrorMessage_";
+        var DELETE_MEAL_ERROR_MSG_PREFIX = "DeleteMealErrorMessage_";
+        var EDIT_MEAL_ERROR_MSG_PREFIX = "EditErrorMessage_";
+        var messagesDictionary = {
+            NewMealErrorMessage_400: "ojojoj wpisz porawne dane",
+            DeleteMealErrorMessage_404: "ojojoj nie istnieje takie danie",
+            EditMealErrorMessage_405: "ojojoj niepoprawny format ceny, do części dzieśiętnych użyj przecinka",
+            GeneralErrorMessage: "stało się coś mrocznego",
+            NoCategoryErrorMessage: "Ej, no wpisz tę kategorię",
+            ModificationSuccessMessage: "Modyfikacja się powiodła :)",
+            ModificationNoPriceErrorMessage: "Chcesz oddać to za darmo???",
+            ModificatoinNoNameErrorMessage: "Nazwij mnie"
+
+        };
+
+        //$.ajaxSetup({
+        //    cache: false,
+        //    error: function (x, e) {
+        //        if (x.status == 0) {
+        //            alert('You are offline!!\n Please Check Your Network.');
+        //        } else if (x.status == 404) {
+        //            alert('Requested URL not found.');
+        //        } else if (x.status == 500) {
+        //            alert('Internal Server Error.');
+        //        } else if (e == 'parsererror') {
+        //            alert('Error.\nParsing JSON Request failed.');
+        //        } else if (e == 'timeout') {
+        //            alert('Request Time out.');
+        //        } else {
+        //            alert('Unknown Error.\n' + x.responseText);
+        //        }
+        //    }
+        //});
 
         var menuTable = $("#menuTable");
 
@@ -112,27 +131,27 @@
                 alertify.success(data.message);
             },
             error: function (xhr, textStatus, errorThrown) {
-                console.log(xhr);
-                console.log(textStatus);
-                console.log(errorThrown);
-                //alertify.error(xhr.responseText);
+                //console.log(xhr);
+                //console.log(textStatus);
+                //console.log(errorThrown);
+                alertify.error(messagesDictionary[EDIT_MEAL_ERROR_MSG_PREFIX + xhr.status] != null ? messagesDictionary[ADD_NEW_MEAL_ERROR_MSG_PREFIX + xhr.status] : messagesDictionary[GeneralErrorMessage]);
+
             }
         });//{ name: $(this).attr("data-model-property-name")}
 
 
         $('.editable-meal-name').editable('option', 'validate', function (v) {
-            if (!v) { return 'Nazwij mnie'; }
-            else { alertify.success("Modyfikacja się powiodła :)"); }
+            if (!v) { return messagesDictionary.ModificatoinNoNameErrorMessage }
 
         });
         $('.editable-meal-category').editable('option', 'validate', function (v) {
-            if (!v) return 'Ej, no wpisz tę kategorię';
+            if (!v) {return messagesDictionary.NoCategoryErrorMessage}
         });
         $('.editable-meal-price').editable('option', 'validate', function (v) {
-            if (!v) { return 'Chcesz oddać to za darmo???'; }
+            if (!v) { return messagesDictionary.ModificationNoPriceErrorMessage; }
             else if (!v.match(/^\d+([\,]\d\d)?$/))
             {
-                return "Zły format ceny, do części dzieśiętnych użyj przecinka";
+                return messagesDictionary.EditMealErrorMessage_405;
             }
         });
         
@@ -178,14 +197,14 @@
                 success: function (data) {
                     alertify.success(data.message);
                     removeTableRow(mealId);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    //console.log(xhr);
+                    //console.log(textStatus);
+                    //console.log(errorThrown);
+                    alertify.error(messagesDictionary[DELETE_MEAL_ERROR_MSG_PREFIX + xhr.status] != null ? messagesDictionary[ADD_NEW_MEAL_ERROR_MSG_PREFIX + xhr.status] : messagesDictionary[GeneralErrorMessage]);
+
                 }
-                //,
-                //error: function (xhr, textStatus, errorThrown) {
-                //    console.log(xhr);
-                //    console.log(textStatus);
-                //    console.log(errorThrown);
-                //    alertify.error(xhr.responseText);
-                //}
             });
         }
 
@@ -280,7 +299,7 @@
         function clearAddNewMealForm() {
             $("#add-new-meal-table > tbody > tr > td > input").val("");
         }
-
+        
         function addNewMeal() {
             var $this = $(this);
             $this.button('loading');
@@ -301,22 +320,18 @@
                     addNewMealToTable(data.meal);
                     clearAddNewMealForm();
                     $this.button('reset');
-                }
-                //error: function (xhr, textStatus, errorThrown) {
-                    ////console.log(data.responseJSON);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    //console.log(data.responseJSON);
                     //console.log(xhr);
                     //console.log(textStatus);
                     //console.log(errorThrown);
-                    //var errorsJson = JSON.parse(xhr.responseText);
-                    //console.log(errorsJson);
-                    //for(var i = 0; i < errorsJson.length; i++) {
-                    //    //console.log(data.responseJSON);
-                    //    alertify.error(errorsJson[i].ErrorMessage);
-                    //}
+                    alertify.error(messagesDictionary[ADD_NEW_MEAL_ERROR_MSG_PREFIX + xhr.status] != null ? messagesDictionary[ADD_NEW_MEAL_ERROR_MSG_PREFIX + xhr.status] : messagesDictionary[GeneralErrorMessage]);
                     
-                    //$this.button('reset');
+                    $this.button('reset');
 
-                //}
+
+                }
             });
         }
 

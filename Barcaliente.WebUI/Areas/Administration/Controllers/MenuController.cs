@@ -8,6 +8,7 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using Barcaliente.Domain.Abstract;
 using Barcaliente.Domain.Entities;
+using Barcaliente.WebUI.Areas.Administration.Models;
 
 namespace Barcaliente.WebUI.Areas.Administration.Controllers
 {
@@ -26,9 +27,9 @@ namespace Barcaliente.WebUI.Areas.Administration.Controllers
 
         public ActionResult Index()
         {
-            IEnumerable<Meal> meals = _mealRepository.Meals.Where(meal => !meal.IsDeleted);
+            MenuAdministrationModel menuAdministrationModel = new MenuAdministrationModel { Meals = _mealRepository.Meals.Where(meal => !meal.IsDeleted), NewMeal = new Meal() };
 
-            return View(meals);
+            return View(menuAdministrationModel);
         }
         [HttpPost]
         public JsonResult Edit(string pk, string value, string name)
@@ -44,11 +45,11 @@ namespace Barcaliente.WebUI.Areas.Administration.Controllers
             }
             catch (FormatException)
             {
-                Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                return new JsonResult { Data = "Ojojoj, ktoś tu podał dane w złym formacie..." };                      
+                Response.StatusCode = (int)HttpStatusCode.MethodNotAllowed;
+                return new JsonResult();                      
             }
             Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            return new JsonResult { Data = "Stało się coś mrocznego..." };                      
+            return new JsonResult();                      
         }
 
 
@@ -64,10 +65,10 @@ namespace Barcaliente.WebUI.Areas.Administration.Controllers
                     return new JsonResult { Data = new { message = "Udało się usunąc danie :)" } };
                 }
                 Response.StatusCode = (int)HttpStatusCode.NotFound;
-                return new JsonResult { Data = "Danie o takim Id nie istnieje." };
+                return new JsonResult();
             }
             Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            return new JsonResult { Data = "Stało się coś mrocznego..." };
+            return new JsonResult();
         }
 
         [HttpPost]
@@ -81,11 +82,11 @@ namespace Barcaliente.WebUI.Areas.Administration.Controllers
                     return new JsonResult { Data = new {message = "Udało się dodać nowe danie :)", meal = meal} };
                 }
                 Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                return new JsonResult { Data = "Stało się coś mrocznego" };
+                return new JsonResult();
             }
 
             Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            return new JsonResult { Data = ModelState.Values.SelectMany(v => v.Errors) };
+            return new JsonResult();
         }
     }
 }
